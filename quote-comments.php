@@ -1,30 +1,17 @@
 <?php
 /*
-Plugin Name: Quote Comments
-Plugin URI: https://github.com/metodiew/Quote-Comments
+Plugin Name: Quote Comments Reloaded
+Plugin URI: https://github.com/Jocker666z/Quote-Comments-Reload
 Description: Creates a little quote icon in comment boxes which, when clicked, copies that comment to the comment box wrapped in blockquotes.
-Version: 2.2
-Author: Stanko Metodiev
-Author URI: https://metodiew.com
+Version: r2.2.1
+Licence: GPL-2.0 - https://www.gnu.org/licenses/gpl-2.0.html
+Author: Jocker
+	Stanko Metodiev
+	Joen Asmussen
+Author URI: https://github.com/Jocker666z
+	    https://metodiew.com 
+	    https://automattic.com/ 
 */
-
-/**
- * @TODO
- * 
- * This is the real TO DO list:
- * - fix all notifications, notes, issues and errors
- * - improve the code base
- */
-
- 
- /**
-  * That's the previous @TODO:
-  * 
-	- phase out "get_comment_time" option
-	- clean up remaining functions for reply
-	- improve reply layout
-	- recode JS
-  */
 
 load_plugin_textdomain('quote-comments', NULL, dirname(plugin_basename(__FILE__)) . "/languages");
 

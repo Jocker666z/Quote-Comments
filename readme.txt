@@ -1,22 +1,23 @@
-=== Quote Comments ===
-Contributors: metodiew, Joen
-Donate link: https://metodiew.com/
+=== Quote Comments Reloaded ===
+Contributors: metodiew, Joen, Jocker
+Donate link: -
 Tags: quote, comments, javascript, textile, wysiwyg
 Requires at least: 2.5.0
 Tested up to: 4.7
-Stable tag: 2.2
+Stable tag: r2.2.1
 Stable tag: trunk
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-
 == Description ==
-
-<strong>An important note: </strong>the plugin was adopted and it will be updated a few times in the next couple of weeks. I'll need your help with the testing, reporting potential issues, suggesting new improvements, etc :)
 
 This plugin adds a tiny link that says "Quote" on each comment on your posts. Click it, and the contents of the comment is copied to the comment area, wrapped in blockquote tags.
 
 Note: Doesn't work with Jetpack comments.
+
+== Description ==
+
+Quote Comments Reloaded is a fork of Quote Comments (https://wordpress.org/plugins/quote-comments/), first goal of this fork is clean the code.
 
 == Installation ==
 
@@ -76,6 +77,11 @@ a.comment_quote_link {
 }`
 
 == Changelog ==
+
+= r2.2.1 =
+
+* 14/02/17
+* Rename Reloaded, adding r to the version number.
 
 = 2.2 =
 
