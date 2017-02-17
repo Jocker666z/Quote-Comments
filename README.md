@@ -261,11 +261,3 @@ a.comment_quote_link {
 ### 1.0 
 
 * First release.
-
-
-## Upgrade Notice 
-
-
-### 2.2 
-
-The plugin wasn't maintained for some time. In this version I, the new author, I'm fixing a few PHP notices and errors, but I'm planning to do a few updates in the next weeks and months. Let me know if you have some ideas, suggestions or a feedback you'd like to share!
