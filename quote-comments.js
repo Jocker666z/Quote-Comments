@@ -2,126 +2,66 @@
 	Quote Comments JS
 */
 
-
-function jsEncode(str){
-
-	// ugly hack
-	str = " " + str;
-	
-	var aStr = str.split(''), i = aStr.length, aRet = [];
-
-	while (--i) {
-		var iC = aStr[i].charCodeAt();
-		
-		if (iC < 65 || iC > 127 || (iC>90 && iC<97)) {
-			aRet.push('&#'+iC+';');
-		} else {
-			aRet.push(aStr[i]);
-		}
-	}
-	
-	return aRet.reverse().join('');
-	
-}
-
-
-
 function quote(postid, author, commentarea, commentID, mce) {
+    "use strict";
 	try {
-		// If you don't want quotes begin with "<author>:", uncomment the next line
-		//author = null;
-
-		// begin code
 		var posttext = '';
 
-		if (window.getSelection){
+		if (window.getSelection) {
 			posttext = window.getSelection();
 		}
-
-		else if (document.getSelection){
+        else if (document.getSelection) {
 			posttext = document.getSelection();
 		}
-
-		else if (document.selection){
+		else if (document.selection) {
 			posttext = document.selection.createRange().text;
 		}
 
-		else {
-			return true;
-		}
+            else {
+                return true;
+            }
 
-		if (posttext=='') {		// quoting entire comment
+		if (posttext == '') {		// quoting entire comment
 
-			// quoteing the entire thing
+            // quoteing the entire thing
 			var selection = false;
 			var commentID = commentID.split("div-comment-")[1];
-
 			// quote entire comment as html
 			var theQuote = "q-"+commentID;
 			//var theQuote = "div-comment-"+commentID;
 			var posttext = document.getElementById(theQuote).innerHTML;
-
-			// remove nested divs
-			var posttext = posttext.replace(/<div(.*?)>((.|\n)*?)(<\/div>)/ig, "");
-
-			// remove nested blockquotes
-			var posttext = posttext.replace(/<blockquote(.*?)>((.|\n)*?)(<\/blockquote>)/ig, "");
-			var posttext = posttext.replace(/<blockquote(.*?)>((.|\n)*?)(<\/blockquote>)/ig, "");
-
-			// remove superfluous linebreaks
-			var posttext = posttext.replace(/\s\s/gm, "");
-
-			// do basic cleanups
-			var posttext = posttext.replace(/	/g, "");
-			//var posttext = posttext.replace(/<p>/g, "\n");
-			//var posttext = posttext.replace(/<\/\s*p>/g, "");
-			var posttext = posttext.replace(/<p>/g, "");
-			var posttext = posttext.replace(/<\/\s*p>/g, "\n\n");
-			var posttext = posttext.replace(/<br>/g, "")
-
-			// remove nonbreaking space
-			var posttext = posttext.replace(/&nbsp;/g, " ");
-
-			// remove nested spans
+            
+			// remove <div>
+			var posttext = posttext.replace(/<div(.*?)>((.|\n)*?)(<\/div>)/ig, "");           
+            // remove <p>
+            var posttext = posttext.replace(/<\/p>/gm, "").replace(/<p>/gm, "");      
+            // remove <blockquotes>
+            while (posttext != (posttext = posttext.replace(/<blockquote>[^>]*<\/\s*blockquote>/g, "")));
+			var posttext = posttext.replace(/<blockquote(.*?)>((.|\n)*?)(<\/blockquote>)/gm, "\n");   
+            // remove <span>
 			var posttext = posttext.replace(/<span(.*?)>((.|\n)*?)(<\/span>)/ig, "");
-
-			// remove nested blockquotes
-			while (posttext != (posttext = posttext.replace(/<blockquote>[^>]*<\/\s*blockquote>/g, "")));
-
-			// remove nested quote links
-			var posttext = posttext.replace(/<a class="comment_quote_link"(.*?)>((.|\n)*?)(<\/a>)/ig, "");
-			var posttext = posttext.replace(/<a class="comment_reply_link"(.*?)>((.|\n)*?)(<\/a>)/ig, "");
-
+  			// various cleanups
+			var posttext = posttext.replace(/	/g, "");
+			var posttext = posttext.replace(/<br>/g, "")
+			var posttext = posttext.replace(/&nbsp;/g, "");    
+            var posttext = posttext.replace(/\s\s/gm, "");
 		}
 
 		// build quote
 		if (author) {
-			
-			// prevent xss stuff
-			author = jsEncode(author);
-			
-			var quote='\n<blockquote cite="comment-'+postid+'">\n\n<strong><a href="#comment-'+postid+'">'+unescape(author)+'</a></strong>: '+posttext+'</blockquote>\n';
-
+			var quote='<blockquote cite="comment-'+postid+'">\n<strong><a href="#comment-'+postid+'">'+unescape(author)+'</a></strong>:\n '+posttext+' \n</blockquote>\n';
 		} else {
-
-			var quote='\n<blockquote cite="comment-'+postid+'">\n\n'+posttext+'</blockquote>\n';
-
+			var quote='<blockquote cite="comment-'+postid+'">\n\n'+posttext+'</blockquote>\n';
 		}
 
 		// send quoted content
 		if (mce == true) {		// TinyMCE detected
-
-			//addQuoteMCE(comment,quote);
 			insertHTML(quote);
 			insertHTML("<p>&nbsp;</p>");
-
 		} else {				// No TinyMCE detected
-
 			var comment=document.getElementById(commentarea);
 			addQuote(comment,quote);
-
 		}
-
 		return false;
 
 	} catch (e) {
@@ -136,13 +76,9 @@ function quote(postid, author, commentarea, commentID, mce) {
 
 function inlinereply(postid, author, commentarea, commentID, mce) {
 	try {
-		
-		// prevent xss stuff
-		author = jsEncode(author);
 
 		// build quote
-		var quote='\n<strong><a href="#comment-'+postid+'">'+unescape(author)+'</a></strong>, \n\n';
-
+		var quote='<strong><a href="#comment-'+postid+'">'+unescape(author)+'</a></strong>, \n';
 
 		// send quoted content
 		if (mce == true) {		// TinyMCE detected
@@ -177,8 +113,6 @@ function addQuote(comment,quote){
 		Derived from Alex King's JS Quicktags code (http://www.alexking.org/)
 		Released under LGPL license
 	*/	
-
-	
 
 	// IE support
 	if (document.selection) {
@@ -232,9 +166,4 @@ function addQuote(comment,quote){
 	catch ( e ) {
 	}
 
-	
-
 }
-
-
-

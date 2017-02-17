@@ -3,7 +3,7 @@
 Plugin Name: Quote Comments Reloaded
 Plugin URI: https://github.com/Jocker666z/Quote-Comments-Reload
 Description: Creates a little quote icon in comment boxes which, when clicked, copies that comment to the comment box wrapped in blockquotes.
-Version: r2.2.1
+Version: R2.3
 Licence: GPL-2.0 - https://www.gnu.org/licenses/gpl-2.0.html
 Author: Jocker
 	Stanko Metodiev
@@ -17,7 +17,7 @@ load_plugin_textdomain('quote-comments', NULL, dirname(plugin_basename(__FILE__)
 
 // Add a define variable, we'll need it later :)
 if ( ! defined( 'QUOTE_COMMENTS_VERSION' ) ) {
-	define( 'QUOTE_COMMENTS_VERSION', '2.2' );
+	define( 'QUOTE_COMMENTS_VERSION', '2.2.1' );
 }
 
 function quote_scripts () {
@@ -36,14 +36,9 @@ if (!is_admin()) {
 }
 
 
-
-
-
-
 function add_quote_button($output) {
 
-
-	global $user_ID;
+    global $user_ID;
 	if (get_option('comment_registration') && !$user_ID) {
 		
 		return $output;
@@ -205,8 +200,6 @@ if (get_option('quote_comments_pluginhook') == 'get_comment_time') {
 
 
 function add_quote_tags($output) {
-	
-
 	global $user_ID;
 	if (get_option('comment_registration') && !$user_ID) {
 		
@@ -221,28 +214,10 @@ function add_quote_tags($output) {
 		return $output;
 		
 	}
-
-
-/*
-	global $user_ID;
-	if (get_option('comment_registration') && !$user_ID) {
-		
-		echo $output;
-		
-	} else if (!is_feed() && comments_open()) {
-	
-	    echo "\n<div id='q-".get_comment_ID()."'>\n\n\n" . $output . "\n\n\n</div>\n";
-	
-	} else {
-	
-		echo $output;
-		
-	}
-*/
-	
 }
+
+
 if (!is_admin()) {
-	//add_filter('get_comment_text', 'add_quote_tags');
 	add_filter('get_comment_text', 'add_quote_tags', 1);
 }
 

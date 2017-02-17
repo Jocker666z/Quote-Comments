@@ -1,18 +1,14 @@
-# Quote Comments 
-**Contributors:** metodiew, Joen  
-**Donate link:** https://metodiew.com/  
+# Quote Comments Reloaded
+**Contributors:** metodiew, Joen, Jocker
 **Tags:** quote, comments, javascript, textile, wysiwyg  
 **Requires at least:** 2.5.0  
 **Tested up to:** 4.7  
-**Stable tag:** 2.2  
-**Stable tag:** trunk  
-**License:** GPLv2 or later  
+**Stable tag:** R2.3
+**License:** GPLv2
 **License URI:** https://www.gnu.org/licenses/gpl-2.0.html  
 
 
 ## Description 
-
-<strong>An important note: </strong>the plugin was adopted and it will be updated a few times in the next couple of weeks. I'll need your help with the testing, reporting potential issues, suggesting new improvements, etc :)
 
 This plugin adds a tiny link that says "Quote" on each comment on your posts. Click it, and the contents of the comment is copied to the comment area, wrapped in blockquote tags.
 
@@ -93,6 +89,11 @@ a.comment_quote_link {
 
 ## Changelog 
 
+### R2.3
+* Add R before version number for indiquate Fork
+* Revival replace action in js file (parsing quote)
+* Clean (the overflow of) return carriage in build quote
+
 
 ### 2.2 
 
@@ -105,7 +106,6 @@ a.comment_quote_link {
 ### 2.1.7 
 
 * Fixed problem with smileys and paragraphs disappearing on some themes. Credit to Gabi for fixing this! Thanks Gabi!
-
 
 
 ### 2.1.6 
