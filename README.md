@@ -1,10 +1,10 @@
 # Quote Comments Reloaded
-**Contributors:** metodiew, Joen, Jocker
+**Contributors:** metodiew, Joen, Jocker  
 **Tags:** quote, comments, javascript, textile, wysiwyg  
 **Requires at least:** 2.5.0  
 **Tested up to:** 4.7  
-**Stable tag:** R2.3
-**License:** GPLv2
+**Stable tag:** R2.3  
+**License:** GPLv2  
 **License URI:** https://www.gnu.org/licenses/gpl-2.0.html  
 
 
